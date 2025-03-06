@@ -26,7 +26,11 @@
   <link rel="stylesheet" href="./static/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
-
+  
+    <!-- 引入 MathJax 库 -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+ 
   <script src="./static/js/jquerymin351.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
@@ -52,23 +56,11 @@
             <h1 class="title is-1 publication-title">Training-Free Generation of Temporally Consistent Rewards from VLMs </h1>
             <div class="is-size-5 publication-authors">
                 <!-- <span class="team-name"><b>Beijing Institute of Technology <p style="font-size: 70%"></p></b></span> -->
-                <span class="author-block">Yinuo Zhao<sup>1,2</sup>, Kun Wu<sup>2,2</sup>,Tianjiao Yi<sup>1</sup>,
-                Zhiyuan Xu<sup>2</sup>, Zhengping Che<sup>2</sup>, <span class="author-block"></span>Chi Harold Liu<sup>1</sup>,Jian Tang<sup>2</sup>
-    
-                   
-
+                <span class="author-block">Anonymous
                 <div class="is-size-6 publication-authors"> 
                   <span class="author-block">
   
-                  </span>
-                 <br>
-               
-                <div class="is-size-5 publication-authors id=institute">
-                  <sup>1</sup>Beijing Institute of Technology, 
-                  <sup>2</sup>Beijing Innovation Center of Humanoid Robotics
-  
-                </div>
-                 <br>           
+                  </span>         
                 </div>
               </div>
               
@@ -105,13 +97,12 @@
               as goal decomposition and visual comprehension. However,
               providing accurate rewards for robotic manipulation without fine-tuning VLMs remains challenging due to the absence of domain-specific robotic knowledge in pre-trained
               datasets and high computational costs that hinder realtime applicability. To address this, 
-              we propose T2-VLM,a novel training-free, temporally consistent framework that
+              we propose $ T^2-VLM $,a novel training-free, temporally consistent framework that
               generates accurate rewards through tracking the changes in VLM-derived subgoals. Specifically, our method first
               queries the VLM to establish spatially aware subgoals and
               an initial completion estimate before each rounds of interaction. We then employ a Bayesian tracking algorithm to
               update the completion status dynamically, using spatial hidden states to generate structured rewards for reinforcement
-              learning (RL) agents. This approach enhances long-horizon decision-making and improves failure recovery capabili
-              ties with RL. Extensive experiments indicate that T2-VLM
+              learning (RL) agents. This approach enhances long-horizon decision-making and improves failure recovery capabilities with RL. Extensive experiments indicate that $ T^2-VLM $
               achieves state-of-the-art performance in two robot manipulation benchmarks, 
               demonstrating superior reward accuracy with reduced computation consumption. We believe
               our approach not only advances reward generation techniques but also contributes to the broader field of embodied
@@ -122,8 +113,7 @@
       <br>
       <!--/ Abstract. -->
 
-      <!-- Hardware Setup. -->
-    
+      <!-- Hardware Setup. -->    
       <!-- / Hardware Setup. -->
 
 
@@ -143,7 +133,13 @@
               </div>
               <div class="content has-text-justified">
                 <p>
-                  We introduce 
+                  In this work, we introduce T2-VLM, a novel reward generation framework that ensures temporal consistency by tracking the environment's goal completion status.
+                  Fig. 2 provides an overview of T2-VLM. Unlike previous VLM-based reward generation methods, T2-VLM queries the VLM only once per episode,
+                  then incorporates temporal information (object trajectories) to update the VLM-initialized goal status. A bayesian tracking algorithm is then
+                  proposed to manage the updates, enabling T2-VLM to remain training-free, deliver precise reinforcement learning
+                  (RL) rewards, and withstand inaccurate VLM estimations by leveraging temporal data. In this section, we begin by
+                  explaining how VLMs are prompted to generate subgoals and initial estimations, then describe a particle filter method
+                  that uses VLM-coded affordances for posterior computation, and finally present T2-VLM's implementation details.
               </div>
             </div>
           <!-- </div> -->
@@ -160,17 +156,53 @@
         <div class="column is-full-width">
           <h2 class="title is-3">Experiments</h2>
       <!-- Experiment  -->
-        <h2 class="title is-4">Experiments on DMC-GB</h2>
-        <p> 
-          As shown in Tab. 1, T2-VLM achieves ...
-        </p>
+            <p> 
+              In this section, we aim to answer the following research
+              questions. 1. Is the reward generated by T2-VLM sufficient to support RL training? 2. How do the policies trained by 
+              T2-VLM compare with other methods in recovery capabilities? 3. How does each component contribute to T2-VLM?
+              To solve these questions, we conducted experiments on two robot benchmarks with four manipulation tasks.
+            </p>
+          <h2 class="title is-4">Setup</h2>
+          <p> 
+            We conducted experiments on both offline datasets and online environments to comprehensively explore the reward 278
+            accuracy and recovery ability provided by T2
+            -VLM. We introduce four tasks from two commonly used benchmark 
+            Cliport [24] and Calvin [18]: Place-same-color, Stack
+            tower, Make-line and Cleanup-desk. They are all long- 
+            horizon tasks that involves multiple subgoals. The success 
+            conditions for all four tasks are: 284
+            1. Place-same-color: The red cube is inside the red bowl; 
+            the green cube is inside the green bowl; The yellow cube 
+            is on the tray; the blue cube is on the tray. 
+            2. Stack-tower: The red cube is on the desktop; the yellow 
+            cube is on the red cube; the gray cube is on the yellow 
+            cube; the green cube is on the gray cube. 
+            3. Make-lines: The red cube is next to the left of the green 
+            cube; The green cube is next to the left of the blue cube. 
+            4. Cleanup-desk: The drawer is open; the red cube is on the 
+            drawer; the blue cube is on the drawer; 
+            More detail descriptions on the tasks can be found in the  
+            appendix. 
+            To evaluate the accuracy for identify subgoal completion 
+            status, we constructed four offline datasets, each consists 
+            of 50 trajectories, collected by a mixture of scripted expert 
+            policy and random policy. 
+            During online reinforcement learning training, we com- 
+            pare T2-VLM with other two state-of-that-art (SOTA) re- 
+            ward generation methods, as well as the environmental re- 
+            wards. They two comparison methods are: 1) VLM-CaR: 
+            generates reward by querying VLMs to write codes based 
+            on the images and language task description before the 
+            robot execution. Then, it utilize a small number of trajecto- 
+            ries that generated from expert and random policies to cor
+          </p>
         <br>
         <div class="yush-div-center">
           <img src="./static/images/dmcgb_table.jpg" class="img-responsive">
         </div>
         <br>
         <h2 class="title is-4">Real-world Experiments</h2>
-        <p>To validate T2-VLM ....
+        <p>To validate $ T^2-VLM $ ...
         </p>
 
         <div class="yush-div-center">
