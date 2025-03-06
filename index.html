@@ -8,7 +8,7 @@
     content="Efficient Training of Generalizable Visuomotor Policies via Control-Aware Augmentation">
   <meta name="keywords" content="Zero-shot Generalization, Visuomotor Policies, Data Augmentation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Efficient Training of Generalizable Visuomotor Policies via Control-Aware Augmentation</title>
+  <title>Training-Free Generation of Temporally Consistent Rewards from VLMs</title>
 
 
   <script>
@@ -49,8 +49,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Efficient Training of Generalizable Visuomotor Policies via
-              Control-Aware Augmentation </h1>
+            <h1 class="title is-1 publication-title">Training-Free Generation of Temporally Consistent Rewards from VLMs </h1>
             <div class="is-size-5 publication-authors">
                 <!-- <span class="team-name"><b>Beijing Institute of Technology <p style="font-size: 70%"></p></b></span> -->
                 <span class="author-block">Yinuo Zhao<sup>1,2</sup>, Kun Wu<sup>2,2</sup>,Tianjiao Yi<sup>1</sup>,
@@ -101,16 +100,22 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Improving generalization is one key challenge in Embodied AI,
-              where obtaining large-scale datasets across diverse scenarios is
-              costly. Traditional weak augmentations, such as cropping and flipping, are insufficient for improving a model’s performance in new
-              environments. Existing data augmentation methods often disrupt
-              task-relevant information in images, potentially degrading performance. To overcome these challenges, we introduce EAGLE—an
-              Efficient trAining framework for GeneraLizablE visuomotor policies—that improves upon existing methods by: 1) enhancing generalization by applying augmentation only to control-related regions
-              identified through a self-supervised control-aware mask; and 2)
-              improving training stability and efficiency by distilling knowledge
-              from an expert to a visuomotor student policy, which is then deployed to unseen environments without further fine-tuning. Comprehensive experiments on three domains—including the DMControl Generalization Benchmark (DMC-GB), the enhanced Robot Manipulation Distraction Benchmark (RMDB), and a long-sequential
-              drawer-opening task—validate the effectiveness of our method.
+              Recent advances in vision-language models (VLMs) have
+              significantly improved performance in embodied tasks such
+              as goal decomposition and visual comprehension. However,
+              providing accurate rewards for robotic manipulation without fine-tuning VLMs remains challenging due to the absence of domain-specific robotic knowledge in pre-trained
+              datasets and high computational costs that hinder realtime applicability. To address this, 
+              we propose T2-VLM,a novel training-free, temporally consistent framework that
+              generates accurate rewards through tracking the changes in VLM-derived subgoals. Specifically, our method first
+              queries the VLM to establish spatially aware subgoals and
+              an initial completion estimate before each rounds of interaction. We then employ a Bayesian tracking algorithm to
+              update the completion status dynamically, using spatial hidden states to generate structured rewards for reinforcement
+              learning (RL) agents. This approach enhances long-horizon decision-making and improves failure recovery capabili
+              ties with RL. Extensive experiments indicate that T2-VLM
+              achieves state-of-the-art performance in two robot manipulation benchmarks, 
+              demonstrating superior reward accuracy with reduced computation consumption. We believe
+              our approach not only advances reward generation techniques but also contributes to the broader field of embodied
+              AI.
           </div>
         </div>
       </div>
@@ -136,24 +141,9 @@
               <div class="yush-div-center">
                 <img src="./static/images/overview.jpg" class="img-responsive" style="width: 100%; height: auto;">
               </div>
-<<<<<<< HEAD
-=======
-              
->>>>>>> bf5be29515d4745813061c64b303e015bdca6e4d
               <div class="content has-text-justified">
                 <p>
-                  We introduce EAGLE, an efficient training framework for generalizable visuomotor policies. The overall goal of EAGLE is to learn
-                  visuomotor policies that are invariant and capable of zero-shot
-                  generalization. EAGLE consists of two simultaneously optimized
-                  modules: a control-aware augmentation module and a privilegeguided distillation module. The former module retrieves temporal
-                  data from the replay buffer and conducts a self-supervised reconstruction task, accompanied by three auxiliary losses, to identify
-                  control-related pixels. The latter module augments the observation
-                  input and distills knowledge from a pretrained DRL expert (which
-                  processes only environment states) into the visuomotor student
-                  network (which processes only image observations). After training
-                  is completed, the visuomotor policy can be reliable deployed in
-                  complex environments with visual variations, without the need for
-                  fine-tuning or additional supervision.
+                  We introduce 
               </div>
             </div>
           <!-- </div> -->
@@ -172,11 +162,7 @@
       <!-- Experiment  -->
         <h2 class="title is-4">Experiments on DMC-GB</h2>
         <p> 
-          As shown in Tab. 1, EAGLE achieves an
-          average return of 761 in Hard settings, which is 17.4% higher than
-          previous state-of-the-art method SGQN. EAGLE overcomes visual
-          distraction limitations via control-aware masks that preserves task
-          critical regions while augmenting all irrelevant areas.
+          As shown in Tab. 1, T2-VLM achieves ...
         </p>
         <br>
         <div class="yush-div-center">
@@ -184,17 +170,7 @@
         </div>
         <br>
         <h2 class="title is-4">Real-world Experiments</h2>
-        <p>To validate EAGLE in real-world scenarios, we select a typical
-          robot manipulation task of picking bread and placing it on a plate.
-          We used ACT
-          with ResNet50 as the backbone, and combine it with our control-
-          aware augmentation module and Random Conv techniques. We
-          compare the generalization performance of EAGLE and ACT by
-          averaging results over 20 trials with varying bread positions. As
-          shown in Tab. 2, EAGLE significantly improves generalization
-          when facing with changing backgrounds and added distractors,
-          whereas the baseline ACT lacks such generalization without proper
-          data augmentation.
+        <p>To validate T2-VLM ....
         </p>
 
         <div class="yush-div-center">
@@ -252,17 +228,7 @@
         <div class="column is-full-width">
           <h2 class="title is-3">Conclusion</h2>
       <!-- Experiment  -->
-      <p> In this paper, we address the generalization challenge of visuomotor policies in the face of visual changes. We propose an Efficient
-        trAining framework for GeneraLizablE visuomotor policies (EAGLE)
-        designed to identify control-related regions and facilitate zero-shot
-        generalization to unseen environments. EAGLE comprises two
-        jointly optimized modules: a control-aware augmentation module and a privilege-guided policy distillation module. The former
-        leverages a self-supervised reconstruction task with three auxiliary
-        losses to learn a control-aware attention mask, which distinguishes
-        task-irrelevant pixels and applies strong augmentations to minimize
-        generalization gaps. The latter distills knowledge from a pretrained
-        privileged expert into the visuomotor policies. We conduct extensive comparative and ablation studies across three challenging benchmarks to assess the efficacy of EAGLE. The experimental
-        results well validate the effectiveness of our approach.
+      <p> In this paper ...
       </p>
       <br>
 
