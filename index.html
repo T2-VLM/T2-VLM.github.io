@@ -97,12 +97,12 @@
               as goal decomposition and visual comprehension. However,
               providing accurate rewards for robotic manipulation without fine-tuning VLMs remains challenging due to the absence of domain-specific robotic knowledge in pre-trained
               datasets and high computational costs that hinder realtime applicability. To address this, 
-              we propose $ T^2-VLM $,a novel training-free, temporally consistent framework that
+              we propose T2-VLM,a novel training-free, temporally consistent framework that
               generates accurate rewards through tracking the changes in VLM-derived subgoals. Specifically, our method first
               queries the VLM to establish spatially aware subgoals and
               an initial completion estimate before each rounds of interaction. We then employ a Bayesian tracking algorithm to
               update the completion status dynamically, using spatial hidden states to generate structured rewards for reinforcement
-              learning (RL) agents. This approach enhances long-horizon decision-making and improves failure recovery capabilities with RL. Extensive experiments indicate that $ T^2-VLM $
+              learning (RL) agents. This approach enhances long-horizon decision-making and improves failure recovery capabilities with RL. Extensive experiments indicate that T2-VLM
               achieves state-of-the-art performance in two robot manipulation benchmarks, 
               demonstrating superior reward accuracy with reduced computation consumption. We believe
               our approach not only advances reward generation techniques but also contributes to the broader field of embodied
