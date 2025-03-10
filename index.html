@@ -97,12 +97,12 @@
               as goal decomposition and visual comprehension. However,
               providing accurate rewards for robotic manipulation without fine-tuning VLMs remains challenging due to the absence of domain-specific robotic knowledge in pre-trained
               datasets and high computational costs that hinder realtime applicability. To address this, 
-              we propose T2-VLM,a novel training-free, temporally consistent framework that
+              we propose  T2-VLM ,a novel training-free, temporally consistent framework that
               generates accurate rewards through tracking the changes in VLM-derived subgoals. Specifically, our method first
               queries the VLM to establish spatially aware subgoals and
               an initial completion estimate before each rounds of interaction. We then employ a Bayesian tracking algorithm to
               update the completion status dynamically, using spatial hidden states to generate structured rewards for reinforcement
-              learning (RL) agents. This approach enhances long-horizon decision-making and improves failure recovery capabilities with RL. Extensive experiments indicate that T2-VLM
+              learning (RL) agents. This approach enhances long-horizon decision-making and improves failure recovery capabilities with RL. Extensive experiments indicate that  T2-VLM 
               achieves state-of-the-art performance in two robot manipulation benchmarks, 
               demonstrating superior reward accuracy with reduced computation consumption. We believe
               our approach not only advances reward generation techniques but also contributes to the broader field of embodied
@@ -129,7 +129,7 @@
                 <source src="./static/videos/teaser.mp4" type="video/mp4">
               </video> -->
               <div class="yush-div-center">
-                <img src="./static/images/overview.png" class="img-responsive" style="width: 100%; height: auto;">
+                <img src="./static/images/overview.jpg" class="img-responsive" style="width: 100%; height: auto;">
               </div>
               <div class="content has-text-justified">
                 <p>
@@ -193,7 +193,7 @@
           </p>
           <br>
           <div class="yush-div-center">
-            <img src="./static/images/dmcgb_table.png" class="img-responsive">
+            <img src="./static/images/dmcgb_table.jpg" class="img-responsive">
           </div>
           <br>
 
@@ -202,8 +202,17 @@
             <video poster="" id="" autoplay="" controls="" muted="" loop="" height="100%" playbackrate="2.0" style="border-radius: 5px;">
                 <source src="./static/videos/place-same-color.mp4" type="video/mp4">
             </video>
-            <p style="font-size: 125%"><b>place-same-color<br></b></p>
+            <p style="font-size: 125%"><b>Testing<br>(Change Background)</b></p>
           </div>
+
+          <div class="column has-text-centered">
+                    
+            <video poster="" id="" autoplay="" controls="" muted="" loop="" height="100%" playbackrate="2.0" style="border-radius: 5px;">
+                <source src="./static/videos/sam2.mp4" type="video/mp4">
+            </video>
+            <p style="font-size: 125%"><b>Testing<br>(Change Background)</b></p>
+          </div>
+          
 
 
         <h2 class="title is-4">Ablation Study</h2>
@@ -216,7 +225,7 @@
         </p>
 
         <div class="yush-div-center">
-          <img src="./static/images/ablation.png" class="img-responsive">
+          <img src="./static/images/ablation.jpg" class="img-responsive">
         </div>
       <br>
         <h2 class="title is-4">Investigations</h2>
@@ -237,7 +246,7 @@
         </p>
 
         <div class="yush-div-center">
-          <img src="./static/images/reward_accuracy.png" class="img-responsive">
+          <img src="./static/images/reward_accuracy.jpg" class="img-responsive">
         </div>
         
     <br>
