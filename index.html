@@ -10,7 +10,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Training-Free Generation of Temporally Consistent Rewards from VLMs</title>
 
-
   <script>
     window.dataLayer = window.dataLayer || [];
   </script>
@@ -27,7 +26,7 @@
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
   
-    <!-- 引入 MathJax 库 -->
+  <!-- 引入 MathJax 库 -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
  
@@ -38,15 +37,13 @@
   <script src="./static/js/index.js"></script>
   <style>
     .author-block {
-        display: block;
+      display: block;
     }
-
-</style>
+  </style>
 
 </head>
 
 <body>
-
 
   <section class="hero">
     <div class="hero-body">
@@ -55,16 +52,13 @@
           <div class="column has-text-centered">
             <h1 class="title is-1 publication-title">Training-Free Generation of Temporally Consistent Rewards from VLMs </h1>
             <div class="is-size-5 publication-authors">
-                <!-- <span class="team-name"><b>Beijing Institute of Technology <p style="font-size: 70%"></p></b></span> -->
-                <span class="author-block">Anonymous
+              <!-- <span class="team-name"><b>Beijing Institute of Technology <p style="font-size: 70%"></p></b></span> -->
+              <span class="author-block">Anonymous
                 <div class="is-size-6 publication-authors"> 
-                  <span class="author-block">
-  
-                  </span>         
+                  <span class="author-block"></span>         
                 </div>
-              </div>
-              
-        
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -76,11 +70,8 @@
       <div class="hero-body">
          <video id="teaser" autoplay muted loop playsinline height="100%">
           <source src="./static/videos/teaser.mp4" type="video/mp4">
-        </video> -->
-       
-
-      
-      <!-- </div>
+        </video>
+      </div>
     </div>
   </section>  -->
 
@@ -97,16 +88,17 @@
               as goal decomposition and visual comprehension. However,
               providing accurate rewards for robotic manipulation without fine-tuning VLMs remains challenging due to the absence of domain-specific robotic knowledge in pre-trained
               datasets and high computational costs that hinder realtime applicability. To address this, 
-              we propose  T2-VLM ,a novel training-free, temporally consistent framework that
+              we propose T<sup>2</sup>-VLM, a novel training-free, temporally consistent framework that
               generates accurate rewards through tracking the changes in VLM-derived subgoals. Specifically, our method first
               queries the VLM to establish spatially aware subgoals and
-              an initial completion estimate before each rounds of interaction. We then employ a Bayesian tracking algorithm to
+              an initial completion estimate before each round of interaction. We then employ a Bayesian tracking algorithm to
               update the completion status dynamically, using spatial hidden states to generate structured rewards for reinforcement
-              learning (RL) agents. This approach enhances long-horizon decision-making and improves failure recovery capabilities with RL. Extensive experiments indicate that  T2-VLM 
+              learning (RL) agents. This approach enhances long-horizon decision-making and improves failure recovery capabilities with RL. Extensive experiments indicate that T<sup>2</sup>-VLM 
               achieves state-of-the-art performance in two robot manipulation benchmarks, 
               demonstrating superior reward accuracy with reduced computation consumption. We believe
               our approach not only advances reward generation techniques but also contributes to the broader field of embodied
               AI.
+            </p>
           </div>
         </div>
       </div>
@@ -116,37 +108,32 @@
       <!-- Hardware Setup. -->    
       <!-- / Hardware Setup. -->
 
-
       <!-- RoboMIND Data Analysis. -->
-  <section class="section" id="demo">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-            <h2 class="title is-3">Method</h2>
-            <!-- <div class="container is-max-desktop"> -->
-            <div class="hero-body">
-              <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
-                <source src="./static/videos/teaser.mp4" type="video/mp4">
-              </video> -->
-              <div class="yush-div-center">
-                <img src="./static/images/overview.jpg" class="img-responsive" style="width: 100%; height: auto;">
-              </div>
-              <div class="content has-text-justified">
-                <p>
-                  In this work, we introduce T2-VLM, a novel reward generation framework that ensures temporal consistency by tracking the environment's goal completion status.
-                  Fig. 2 provides an overview of T2-VLM. Unlike previous VLM-based reward generation methods, T2-VLM queries the VLM only once per episode,
-                  then incorporates temporal information (object trajectories) to update the VLM-initialized goal status. A bayesian tracking algorithm is then
-                  proposed to manage the updates, enabling T2-VLM to remain training-free, deliver precise reinforcement learning
-                  (RL) rewards, and withstand inaccurate VLM estimations by leveraging temporal data. In this section, we begin by
-                  explaining how VLMs are prompted to generate subgoals and initial estimations, then describe a particle filter method
-                  that uses VLM-coded affordances for posterior computation, and finally present T2-VLM's implementation details.
+      <section class="section" id="demo">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+              <h2 class="title is-3">Method</h2>
+              <div class="hero-body">
+                <div class="yush-div-center">
+                  <img src="./static/images/overview.jpg" class="img-responsive" style="width: 100%; height: auto;">
+                </div>
+                <div class="content has-text-justified">
+                  <p>
+                    In this work, we introduce T<sup>2</sup>-VLM, a novel reward generation framework that ensures temporal consistency by tracking the environment's goal completion status.
+                    Fig. 2 provides an overview of T<sup>2</sup>-VLM. Unlike previous VLM-based reward generation methods, T<sup>2</sup>-VLM queries the VLM <strong>only once per episode</strong>,
+                    then incorporates <strong>temporal information</strong> (object trajectories) to update the VLM-initialized goal status. A Bayesian tracking algorithm is then
+                    proposed to manage the updates, enabling T<sup>2</sup>-VLM to remain training-free, deliver precise reinforcement learning
+                    (RL) rewards, and withstand inaccurate VLM estimations by leveraging temporal data.
+                  </p>
+                </div>
               </div>
             </div>
-          <!-- </div> -->
+          </div>
         </div>
-      </div>
-    </div>
-    <!-- / RoboMIND Data Analysis. -->
+      </section>
+      
+      <!-- / RoboMIND Data Analysis. -->
   </section>
 
   <section class="section" id="demo">
@@ -155,103 +142,49 @@
       <div class="columns is-centered">
         <div class="column is-full-width">
           <h2 class="title is-3">Experiments</h2>
-      <!-- Experiment  -->
-            <p> 
-              In this section, we aim to answer the following research
-              questions. 1. Is the reward generated by T2-VLM sufficient to support RL training? 2. How do the policies trained by 
-              T2-VLM compare with other methods in recovery capabilities? 3. How does each component contribute to T2-VLM?
-              To solve these questions, we conducted experiments on two robot benchmarks with four manipulation tasks.
-            </p>
-            <br>
-          <h2 class="title is-4">Setup</h2>
-          <p> 
-            We conducted experiments on both offline datasets and online environments to comprehensively explore the reward 278
-            accuracy and recovery ability provided by T2-VLM. We introduce four tasks from two commonly used benchmark 
-            Cliport  and Calvin : Place-same-color, Stack          tower, Make-line and Cleanup-desk. They are all long- 
-            horizon tasks that involves multiple subgoals. The success 
-            conditions for all four tasks are: 
-            1. Place-same-color: The red cube is inside the red bowl; 
-            the green cube is inside the green bowl; The yellow cube 
-            is on the tray; the blue cube is on the tray. 
-            2. Stack-tower: The red cube is on the desktop; the yellow 
-            cube is on the red cube; the gray cube is on the yellow 
-            cube; the green cube is on the gray cube. 
-            3. Make-lines: The red cube is next to the left of the green 
-            cube; The green cube is next to the left of the blue cube. 
-            4. Cleanup-desk: The drawer is open; the red cube is on the 
-            drawer; the blue cube is on the drawer; 
-            More detail descriptions on the tasks can be found in the  
-            appendix. 
-            To evaluate the accuracy for identify subgoal completion 
-            status, we constructed four offline datasets, each consists 
-            of 50 trajectories, collected by a mixture of scripted expert 
-            policy and random policy. 
-            During online reinforcement learning training, we compare T2-VLM with other two state-of-that-art (SOTA) re- 
-            ward generation methods, as well as the environmental rewards. They two comparison methods are: 1) VLM-CaR: 
-            generates reward by querying VLMs to write codes based on the images and language task description before the 
-            robot execution. Then, it utilize a small number of trajectories that generated from expert and random policies to correct the generated code. 
-          </p>
+          <!-- Experiment  -->
           <br>
-          <div class="yush-div-center">
-            <img src="./static/images/dmcgb_table.jpg" class="img-responsive">
-          </div>
+          <h2 class="title is-4">Compare T<sup>2</sup>-VLM and VLM-score on Place-same-color task.</h2>
           <br>
-
-          <div class="column has-text-centered">
-                    
-            <video poster="" id="" autoplay="" controls="" muted="" loop="" height="100%" playbackrate="2.0" style="border-radius: 5px;">
+          <div class="columns">
+            <div class="column has-text-centered">
+              <video poster="" autoplay controls muted loop height="100%" playbackrate="2.0" style="border-radius: 5px;">
                 <source src="./static/videos/T2-VLM.mp4" type="video/mp4">
-            </video>
-            <p style="font-size: 125%"><b>T2-VLM</b></p>
-          </div>
-
-          <div class="column has-text-centered">
-                    
-            <video poster="" id="" autoplay="" controls="" muted="" loop="" height="100%" playbackrate="2.0" style="border-radius: 5px;">
+              </video>
+              <p style="font-size: 125%"><b>T<sup>2</sup>-VLM</b></p>
+            </div>
+            <div class="column has-text-centered">
+              <video poster="" autoplay controls muted loop height="100%" playbackrate="2.0" style="border-radius: 5px;">
                 <source src="./static/videos/vlm_score.mp4" type="video/mp4">
-            </video>
-            <p style="font-size: 125%"><b>VLM-score</b></p>
+              </video>
+              <p style="font-size: 125%"><b>VLM-score</b></p>
+            </div>
           </div>
-          
+          <br>
 
+          <h2 class="title is-4">Compare T<sup>2</sup>-VLM and other reward generation methods on goal completion ratio.</h2>
 
-        <h2 class="title is-4">Ablation Study</h2>
-        <p>As shown in Fig. 5, we investigate how each component 
-          contributes to T2-VLM regarding the reward accuracy. We first compare different hidden state initialization method for 
-          particle filters. We can observe that without VLM intialization, the PF+Random initial only achieved a reward accuracy of 81.72%. When we utilize the VLM initialization, the accuracy improved 13%, and which achieves a similar 
-          high performance as PF+GT initial does. Although VLM can asist in identifying the subgoal completion status under initial scenarios, fully depending on it is not xxx due to the dynamic conditions (e.g., occlusions) during interaction. As 
-          shown in Fig. 5, without the Particle filters, the reward accuracy drops to 68.83%, demonstrating the essential role of 
-          Particle filters in identifying accurate goal completion status with temporal information
-        </p>
+          <div class="yush-div-center">
+            <img src="./static/images/gcr.jpg" class="img-responsive">
+          </div>
+          <br>
+          <br>
+          <h2 class="title is-4">Compare T<sup>2</sup>-VLM and VLM-score under different VLM models.</h2>
 
-        <div class="yush-div-center">
-          <img src="./static/images/ablation.jpg" class="img-responsive">
+          <div class="yush-div-center">
+            <img src="./static/images/compare.jpg" class="img-responsive">
+          </div>
+          <br>
+          <br>
+          <h2 class="title is-4">Ablation studies on VLM initialization and Particle filters.</h2>
+          <div class="yush-div-center">
+            <img src="./static/images/ablation.jpg" class="img-responsive" style="width:600px;" alt="ablation">
+          </div>
+          <br>
+          <br>
         </div>
-      <br>
-        <h2 class="title is-4">Investigations</h2>
-        <p>We first conduct experiments to investigate whether we could improve the performance of T2-VLM through choosing more powerful VLMs. 
-          As shown in Tab. 2, we choose three representative VLMs for comparison. Specifically, we choose Claude-3.5-sonnet, 
-          Qwen2-VL-72B to represent the state-of-the-art closed-source and open-source VLMs, respectively. 
-          And we choose Qwen2-VL-7B to represent VLMs with relative less parameters. 
-          VLM-score represents the method that obtains the goal completion status only through querying VLMs without any temporal information. 
-          We can first observe that using more powerful foundation models could improve the reward accuracy. For example, 
-          with Qwen2-VL-72B trained on more data and exhibiting larger model size, both T2-VLM and VLM-score improve 18% and 45%, 
-          compared to that based on Qwen2-VL-7B. However, even the most powerful VLM currently is insufficient 
-          to provide accurate rewards during robotic interactions with environments. As shown in Tab. 2, 
-          VLM-score (Qwen2-VL-72B) and VLM-score (Claude-3.5-sonnet) can only improve the performance achieved by VLM-score (Qwen2-VL-7B) to 54.77% and 68.83%. 
-          While our method, T2-VLM, brought a significant improvement of 36%, 26% and 49%, compared with VLM-score with same foundation VLMs. Tab. 2 
-          also demonstrates the efficiency advantage of T2-VLM. For example, without frequently querying VLMs, T2-VLM could save around 125 seconds per 
-          trajectory with Claude-3.5-sonnet, while VLM-score requires unaffordable inference time due to frequent queries. 
-          This advantage of T2-VLM should contribute to the light-weight Particle Filters and the efficient local SAM2, to process the temporal observations.
-        </p>
-
-        <div class="yush-div-center">
-          <img src="./static/images/reward_accuracy.jpg" class="img-responsive">
-        </div>
-        
-    <br>
-
-
+      </div>
+    </div>
   </section>
 
   <section class="section" id="demo">
@@ -260,33 +193,25 @@
       <div class="columns is-centered">
         <div class="column is-full-width">
           <h2 class="title is-3">Conclusion</h2>
-      <!-- Experiment  -->
-      <p>In this work, we propose T2-VLM, a Training-free Temporal-consistent reward generation method based on the goal decomposition results from VLMs. 
-        We design prompts to automatically query the VLMs to generate subgoals before the task, and only query VLMs once at the beginning of an episode. 
-        The initial estimation of the subgoal completion status is formulated into a vector and used for effective particle filters initialization. 
-        The hidden state continuously updates the goal completion status based on temporal observations. To achieve this, 
-        we first design an automated procedure to obtain spatial-aware subgoals with an image and a linguistic task description. 
-        Then, we propose a Bayesian tracking algorithm to update the subgoal completion status using temporal observations.
-      </p>
-      <br>
+          <!-- Experiment  -->
+          <p>In this work, we propose T<sup>2</sup>-VLM, a Training-free Temporal-consistent reward generation method based on the goal decomposition results from VLMs. 
+            We design prompts to automatically query the VLMs to generate subgoals before the task, and only query VLMs once at the beginning of an episode. 
+            The initial estimation of the subgoal completion status is formulated into a vector and used for effective particle filters initialization. 
+            The hidden state continuously updates the goal completion status based on temporal observations. To achieve this, 
+            we first design an automated procedure to obtain spatial-aware subgoals with an image and a linguistic task description. 
+            Then, we propose a Bayesian tracking algorithm to update the subgoal completion status using temporal observations.
+          </p>
+          <br>
 
-      <div id="single-task">
-        <!-- Performance on Single Tasks.. -->
-         <br>
-        <!-- <h3 class="title is-4">Success Examples of ACT on Single Tasks</h3>  -->
-        <!-- <p> <b>Single Task Results</b>. ACT achieves an average success rate of 30.7% (Franka), 34.0% (Tien Kung), 55.3% (AgileX) and 38.0% (UR-5e).
-        </p> -->
-        <!-- <video width="640" height="360" controls>
-          <source src="your-video.mp4" type="video/mp4">
-      </video> -->
+          <div id="single-task">
+            <!-- Performance on Single Tasks.. -->
+            <br>
+          </div>
+          <br>
+        </div>
       </div>
-      <br>
-
-
-
+    </div>
   </section>
-
-
 
   <footer class="footer">
     <div class="container">
