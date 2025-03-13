@@ -194,12 +194,14 @@
         <div class="column is-full-width">
           <h2 class="title is-3">Conclusion</h2>
           <!-- Experiment  -->
-          <p>In this work, we propose T<sup>2</sup>-VLM, a Training-free Temporal-consistent reward generation method based on the goal decomposition results from VLMs. 
-            We design prompts to automatically query the VLMs to generate subgoals before the task, and only query VLMs once at the beginning of an episode. 
-            The initial estimation of the subgoal completion status is formulated into a vector and used for effective particle filters initialization. 
-            The hidden state continuously updates the goal completion status based on temporal observations. To achieve this, 
-            we first design an automated procedure to obtain spatial-aware subgoals with an image and a linguistic task description. 
-            Then, we propose a Bayesian tracking algorithm to update the subgoal completion status using temporal observations.
+          <p>Generating reliable and time-efficient rewards remains a  major challenge in real-world robot manipulation tasks. In 
+            this paper, we propose T2-VLM, a Training-free Temporal-consistent reward generation method based on VLM-derived goal decomposition. In this work, we first introduce  
+             an automated procedure to prompt VLMs for decomposed subgoals and initial goal completion estimates before interaction, requiring only a single query per episode. Then,
+            we encode these subgoal completion statuses into a scalar 
+            vector for particle filter initialization, allowing continuous 
+            updates based on temporal observations derived by SAM2. 
+            Experiments across three domains with six robot manipulation tasks show that the T2-VLM can well support the
+            training of RL algorithms, offering high reward accuracy with lower computational cost. 
           </p>
           <br>
 
